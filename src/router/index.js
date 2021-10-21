@@ -7,18 +7,21 @@ Vue.use(VueRouter)
 // 4、创建VueRouter实例-路由对象
 
 //重写路由push方法，解决相同路径跳转报错
-const originalPush = Router.prototype.push
-Router.prototype.push = function push(location, onResolve, onReject) {
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location, onResolve, onReject) {
     if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
     return originalPush.call(this, location).catch((err) => err)
 }
 // 如果你的改了push还是没有生效，可以考虑改replace方法
 // 修改路由replace方法,阻止重复点击报错
-const originalReplace = Router.prototype.replace
-Router.prototype.replace = function replace(location, onResolve, onReject) {
+const originalReplace = VueRouter.prototype.replace
+VueRouter.prototype.replace = function replace(location, onResolve, onReject) {
     if (onResolve || onReject) return originalReplace.call(this, location, onResolve, onReject)
     return originalReplace.call(this, location).catch((err) => err)
 }
+
+const Home = () => import(/*webpackChunkName:'index'*/'@@/components/home.vue')
+const Login = () => import(/*webpackChunkName:'index'*/'@@/components/login.vue')
 
 const router = new VueRouter({
     // 5、配置路由
@@ -28,10 +31,30 @@ const router = new VueRouter({
     routes: [
         // 待配置-使用懒加载
         {
-            path: '/home',
-            component: index
+            path: '/',
+            name: 'home',
+            component: Home
+        },
+        {
+            path: '/login',
+            name: 'login',
+            component: Login
         },
     ]
 })
+router.beforeEach((to, from, next) => {
+    console.log(to)
+    console.log(from)
+    console.log(next)
+    if(!window.sessionStorage.getItem('token')){
+        if(to.path !== '/login'){
+            return next("/login")
+        }
+        next()
+    }else{
+        next()
+    }
+})
+
 // 6、导出路由对象
 export default router;
