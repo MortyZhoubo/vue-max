@@ -1,0 +1,51 @@
+:root{
+    --btn-primary-color:#409EFF;
+    --btn-danger-color:#F56C6C;
+    --btn-warning-color:#E6A23C;
+    --btn-Info-color:#909399;
+    /* overflow-x: hidden;
+    overflow-y: hidden; */
+}
+li{
+    list-style: none;
+    margin: 0 0 !important;
+}
+a{
+    text-decoration: none;
+}
+/* button.primary{
+    padding: 1vh 1.4vw;
+    border-radius: 0.5vh;
+    border:none;
+    background-color: var(--btn-primary-color);
+    color: white;
+    cursor: pointer;
+}
+button.danger{
+    padding: 1vh 1.4vw;
+    border-radius: 0.5vh;
+    border:none;
+    background-color: var(--btn-danger-color);
+    cursor: pointer;
+}
+button.warning{
+    padding: 1vh 1.4vw;
+    border-radius: 0.5vh;
+    border:none;
+    background-color: var(--btn-warning-color);
+    cursor: pointer;
+}
+button.info{
+    padding: 1vh 1.4vw;
+    border-radius: 0.5vh;
+    border:none;
+    background-color: var(--btn-Info-color);
+    cursor: pointer;
+}
+button.likeA{
+    padding: 1vh 1.4vw;
+    border-radius: 0.5vh;
+    border:none;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+} */

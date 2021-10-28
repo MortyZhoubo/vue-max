@@ -4,8 +4,16 @@ import App from './App.vue'
 import router from './router'
 // 导入store
 import store from './store'
-Vue.config.productionTip = false
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
+import Utils from './common/utils.js';
+Vue.prototype.utils=Utils;
+require("../src/assets/index.css")
+require("../src/assets/glide.core.min.css")
+require("../src/assets/glide.theme.min.css")
+Vue.config.productionTip = false
+Vue.use(ElementUI);
 new Vue({
   render: h => h(App),
   // 注入路由到vue实例中

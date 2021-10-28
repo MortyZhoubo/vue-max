@@ -20,8 +20,8 @@ VueRouter.prototype.replace = function replace(location, onResolve, onReject) {
     return originalReplace.call(this, location).catch((err) => err)
 }
 
-const Home = () => import(/*webpackChunkName:'index'*/'@@/components/home.vue')
-const Login = () => import(/*webpackChunkName:'index'*/'@@/components/login.vue')
+const Home = () => import(/*webpackChunkName:'index'*/'@@/home.vue')
+const Login = () => import(/*webpackChunkName:'index'*/'@@/login.vue')
 
 const router = new VueRouter({
     // 5、配置路由
@@ -31,7 +31,7 @@ const router = new VueRouter({
     routes: [
         // 待配置-使用懒加载
         {
-            path: '/',
+            path: '/home',
             name: 'home',
             component: Home
         },
@@ -43,6 +43,7 @@ const router = new VueRouter({
     ]
 })
 router.beforeEach((to, from, next) => {
+    // debugger
     console.log(to)
     console.log(from)
     console.log(next)
