@@ -1,14 +1,25 @@
 import Vue from 'vue'
-// 导入vuex
 import Vuex from 'vuex'
-//挂载Vuex
+import getters from './getters'
+
 Vue.use(Vuex)
 
-//创建Vuex对象
+// https://webpack.js.org/guides/dependency-management/#requirecontext
+const modulesFiles = require.context('./modules', true, /\.js$/)
+
+// you do not need `import app from './modules/app'`
+// it will auto require all vuex module from modules file
+const modules = modulesFiles.keys().reduce((modules, modulePath) => {
+  // set './app.js' => 'app'
+  const moduleName = modulePath.replace(/^\.\/(.*)\.\w+$/, '$1')
+  const value = modulesFiles(modulePath)
+  modules[moduleName] = value.default
+  return modules
+}, {})
+
 const store = new Vuex.Store({
-    state:{
-        //存放的键值对就是所要管理的状态，待配置
-    }
+  modules,
+  getters
 })
-// 默认导出store
+
 export default store
