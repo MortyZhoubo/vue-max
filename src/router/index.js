@@ -32,14 +32,15 @@ const router = new VueRouter({
         // 待配置-使用懒加载
         {
             path: '/home',
-            name: 'home',
+            name: 'Home',
             component: Home
         },
         {
             path: '/login',
-            name: 'login',
+            name: 'Login',
             component: Login
         },
+
     ]
 })
 router.beforeEach((to, from, next) => {
