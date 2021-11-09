@@ -444,6 +444,7 @@ export default {
       .glide_tab {
         position: absolute;
         z-index: 10;
+        padding: 0 160px;
         // animation: showGildeTxt 1s;
         .title {
           color: white;
