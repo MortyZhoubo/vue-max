@@ -1,38 +1,20 @@
 const path = require('path')
 module.exports = {
-    publicPath: './',
-    outputDir: 'dist',
-    assetsDir: 'assets', // 静态资源目录
-    lintOnSave: false,
+    // publicPath: './',
+    // outputDir: 'dist',
+    // assetsDir: 'assets', // 静态资源目录
+    // lintOnSave: false,
     devServer: {
         host: '0.0.0.0',
         port: 8081,
         disableHostCheck: true,
-        // proxy: {
-        //     '/api': {
-        //         // target: process.env.VUE_APP_BASEURL, //, // 'http://172.16.0.47/'
-        //         target: 'http://124.70.74.235/',
-        //         ws: true,
-        //         changeOrigin: true,
-        //         pathRewrite: { '^/api': '' }
-        //     }
-        // }
     },
-    configureWebpack: (config) => {
-        // webpack配置，值位对象时会合并配置，为方法时会改写配置
-        config['externals'] = [{ config: 'config' }]
-        // config.resolve.alias['@'] = resolve('src');
-        // config.resolve.alias['@@'] = resolve('src/components');
-        Object.assign(config, {
-            // 开发生产共同配置
-            resolve: {
-                alias: {
-                    '@': path.resolve(__dirname, './src'),
-                    '@@': path.resolve(__dirname, './src/views'),
-                    vue$: 'vue/dist/vue.esm.js'
-                }
+    css:{
+        loaderOptions:{
+            less:{
+                javascriptEnabled:true,//允许链式调用的换行
             }
-        })
+       }
     },
     chainWebpack: (config) => {
         config.module
