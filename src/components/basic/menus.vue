@@ -10,6 +10,7 @@
       :open-keys="openKeys"
       @openChange="onOpenChange"
     >
+      <template v-if="menuList"> </template>
       <a-menu-item key="1">
         <a-icon type="pie-chart" />
         <span>Option 1</span>
@@ -53,7 +54,8 @@ export default {
     return {
       collapsed: false,
       openKeys: ["sub1"],
-      rootSubmenuKeys: ['sub1', 'sub2'],
+      rootSubmenuKeys: ["sub1", "sub2"],
+      menuList: [],
     };
   },
   methods: {
@@ -75,6 +77,9 @@ export default {
     eventBus.$on("menuCollapsed", (message) => {
       this.collapsed = message;
     });
+    console.log(this.$store)
+    debugger
+    this.menuList = this.$store.permission.state.addRoutes
   },
 };
 </script>
